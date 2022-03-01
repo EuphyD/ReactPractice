@@ -11,6 +11,10 @@ class Counter extends React.Component {
     this.setState({ value: this.state.value + 1 });
   };
 
+  handleDelete = () => {
+    this.setState({ value: this.state.value - 1 });
+  };
+
   render() {
     //props: it includes attributes we added
     //props   ->  {value: , selected: }
@@ -18,6 +22,7 @@ class Counter extends React.Component {
     //console.log("props", this.props);
     return (
       <div>
+        {this.props.children}
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
           //click active
@@ -26,6 +31,12 @@ class Counter extends React.Component {
         >
           {" "}
           click
+        </button>
+        <button
+          onClick={this.handleDelete}
+          className="btn btn-danger btn-sm m-2"
+        >
+          Delete
         </button>
       </div>
     );
