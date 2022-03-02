@@ -1,12 +1,39 @@
 import React, { Component } from "react";
+import "./ChildrenPart.css";
+import ParentPart from "./ParentPart.js";
 
 class ChildPart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {
+    InputValue: "" //Input
+  };
+
+  handleGetInputValue = event => {
+    this.setState({
+      InputValue: event.target.value
+    });
+  };
+
+  handlePost = () => {
+    const { InputValue } = this.state;
+    console.log(InputValue, "------InputValue");
+    //在此做提交操作，比如发dispatch等
+
+    this.props.onSubmit(this.state.InputValue);
+
+    this.setState({ InputValue: "" });
+  };
+
   render() {
-    return <div>Child Component</div>;
+    return (
+      <div className="lowerPart">
+        <div>Child Component</div>
+        <input
+          value={this.state.InputValue}
+          onChange={this.handleGetInputValue}
+        />
+        <button onClick={this.handlePost}>Submit</button>
+      </div>
+    );
   }
 }
 

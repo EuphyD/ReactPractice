@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 
 class Counter extends React.Component {
-  state = {
-    value: this.props.value
-  };
-
-  //点击，就count+1
+  //点击，就count+1 count->value
   //setState 自动改变
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
-  };
+  //  handleIncrement = () => {
+  //    this.setState({ value: this.state.value + 1 });
+  //  };
   //  handleDelete = () => {
   //  this.setState({ value: this.state.value - 1 });
   //};
@@ -24,8 +20,7 @@ class Counter extends React.Component {
         {this.props.children}
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          //click active
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           {" "}
@@ -36,7 +31,7 @@ class Counter extends React.Component {
           //onClick={this.props.onDelete}
 
           //Delete the whole ID
-          onClick={() => this.props.onDelete(this.props.id)}
+          onClick={() => this.props.onDelete(this.props.counter.id)}
           className="btn btn-danger btn-sm m-2"
         >
           Delete
@@ -48,13 +43,13 @@ class Counter extends React.Component {
   //bootstrap，颜色改变
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   //count值显示：“zero”或者值本身
   formatCount() {
-    const { value: count } = this.state;
+    const { value: count } = this.props.counter;
     return count === 0 ? "zero" : count;
   }
 }

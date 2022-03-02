@@ -1,0 +1,12 @@
+.middleBody {
+  background-color: #61dafb;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height: fixed;
+}
+
+.sub-Title {
+  font-weight: bold;
+  font-size: 22px;
+  padding-bottom: 10px;
+}
