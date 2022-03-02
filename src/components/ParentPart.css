@@ -10,3 +10,12 @@
   font-size: 22px;
   padding-bottom: 10px;
 }
+
+.copyButton {
+  background-color: green;
+  color: white;
+  position: relative;
+  margin-left: 20px;
+  display: inline-block;
+  border: none;
+}

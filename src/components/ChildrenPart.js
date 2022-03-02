@@ -15,9 +15,8 @@ class ChildPart extends Component {
 
   handlePost = () => {
     const { InputValue } = this.state;
-    console.log(InputValue, "------InputValue");
-    //在此做提交操作，比如发dispatch等
-
+    console.log("InputValue: ", InputValue);
+    //call Parent
     this.props.onSubmit(this.state.InputValue);
 
     this.setState({ InputValue: "" });

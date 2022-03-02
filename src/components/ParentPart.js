@@ -21,8 +21,9 @@ class ParentPart extends React.Component {
           <div>message received from child component:</div>
           <li>
             {this.state.text}
-            <button onClick={this.changeText}>copy value to child</button>
-            <childPart onCopy={this.state.text} />
+            <button className="copyButton" onClick={this.changeText}>
+              copy value to child
+            </button>
           </li>
         </div>
         <div>
