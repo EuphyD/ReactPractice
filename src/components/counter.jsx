@@ -10,13 +10,12 @@ class Counter extends React.Component {
   handleIncrement = () => {
     this.setState({ value: this.state.value + 1 });
   };
-
-  handleDelete = () => {
-    this.setState({ value: this.state.value - 1 });
-  };
+  //  handleDelete = () => {
+  //  this.setState({ value: this.state.value - 1 });
+  //};
 
   render() {
-    //props: it includes attributes we added
+    //props: it includes attributes added
     //props   ->  {value: , selected: }
     //CODE:
     //console.log("props", this.props);
@@ -33,7 +32,11 @@ class Counter extends React.Component {
           click
         </button>
         <button
-          onClick={this.handleDelete}
+          //raising the event onDelete by call props
+          //onClick={this.props.onDelete}
+
+          //Delete the whole ID
+          onClick={() => this.props.onDelete(this.props.id)}
           className="btn btn-danger btn-sm m-2"
         >
           Delete
