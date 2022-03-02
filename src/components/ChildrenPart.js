@@ -4,7 +4,8 @@ import ParentPart from "./ParentPart.js";
 
 class ChildPart extends Component {
   state = {
-    InputValue: "" //Input
+    InputValue: "", //Input
+    list: []
   };
 
   handleGetInputValue = event => {
