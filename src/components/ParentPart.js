@@ -6,8 +6,8 @@ class ParentPart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "", //input框内容
-      list: [] //列表的每一项
+      text: "",
+      list: []
     };
   }
 
@@ -16,7 +16,6 @@ class ParentPart extends React.Component {
       text: newText
     });
   };
-
   /*
   handleButtonClick() {
     this.setState({
@@ -24,16 +23,15 @@ class ParentPart extends React.Component {
       list: [...this.state.list, this.state.text]
     });
   }
-  */
 
   handleItemDelete(index) {
-    const list = [...this.state.list]; //拷贝数组 因为immutable--state不允许修改
+    const list = [...this.state.list];
     list.splice(index, 1);
     this.setState({
       list: list
     });
   }
-
+*/
   render() {
     return (
       <React.Fragment>
