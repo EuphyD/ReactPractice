@@ -14,14 +14,22 @@ class ChildPart extends Component {
     });
   };
 
-  handlePost = () => {
-    const { InputValue } = this.state;
-    console.log("InputValue: ", InputValue);
-    //call Parent
-    this.props.onSubmit(this.state.InputValue);
+  componentDidMount() {
+    this.props.onRef(this);
+  }
 
-    this.setState({ InputValue: "" });
+  handlePost = () => {
+    //call Parent
+    this.props.addValue(this.state.InputValue);
   };
+
+  setTitleValue = value => {
+    this.setState({
+      InputValue: value
+    });
+  };
+
+  PostAddValue = () => {};
 
   render() {
     return (
@@ -31,7 +39,7 @@ class ChildPart extends Component {
           value={this.state.InputValue}
           onChange={this.handleGetInputValue}
         />
-        <button onClick={this.handlePost}>Submit</button>
+        <button onClick={this.handlePost}>send to the parent</button>
       </div>
     );
   }

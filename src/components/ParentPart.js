@@ -16,6 +16,7 @@ class ParentPart extends React.Component {
       text: newText
     });
   };
+
   /*
   handleButtonClick() {
     this.setState({
@@ -23,6 +24,7 @@ class ParentPart extends React.Component {
       list: [...this.state.list, this.state.text]
     });
   }
+
 
   handleItemDelete(index) {
     const list = [...this.state.list];
@@ -32,6 +34,45 @@ class ParentPart extends React.Component {
     });
   }
 */
+  copyValue = title => {
+    console.log(title);
+    this.setState({
+      text: title
+    });
+    this.$Child.setTitleValue(title);
+    // navigator.clipboard.writeText("Copy this text to clipboard")
+  };
+
+  addValue = item => {
+    console.log(item);
+    let arr = this.state.list;
+    arr.push({
+      title: item,
+      id: new Date().getTime()
+    });
+    console.log(arr);
+    this.setState({
+      list: arr
+    });
+    console.log(this.state.list);
+  };
+
+  removeItem = id => {
+    console.log(id);
+    let arr = this.state.list;
+    arr = arr.map(item => {
+      if (item.id === id) {
+        return false;
+      } else {
+        return item;
+      }
+    });
+    console.log(arr);
+    this.setState({
+      list: arr
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -39,15 +80,38 @@ class ParentPart extends React.Component {
           <div className="middleBody">
             <div className="sub-Title">Parent component</div>
             <div>message received from child component:</div>
-            <li>
-              {this.state.text}
-              <button className="copyButton" onClick={this.changeText}>
-                copy value to child
-              </button>
-            </li>
+            {this.state.list.map((item, index, arr) => {
+              if (item === false) {
+                return <span></span>;
+              }
+              return (
+                <li
+                  onClick={() => {
+                    this.removeItem(item.id);
+                  }}
+                >
+                  <span>{item.title}</span>
+                  <button
+                    className="copyButton"
+                    onClick={() => {
+                      this.copyValue(item.title);
+                    }}
+                  >
+                    copy value to child
+                  </button>
+                </li>
+              );
+            })}
           </div>
           <div>
-            <ChildPart onSubmit={this.changeText} />
+            <ChildPart
+              onRef={ref => {
+                this.$Child = ref;
+              }}
+              addValue={this.addValue}
+              msg={this.state.text}
+              onSubmit={this.changeText}
+            />
           </div>
         </div>
       </React.Fragment>
